@@ -7,6 +7,8 @@ import FoodDetail from "./components/food/FoodDetail";
 import BoardList from "./components/board/BoardList";
 import BoardInsert from "./components/board/BoardInsert";
 import BoardDetail from "./components/board/BoardDetail";
+import BoardUpdate from "./components/board/BoardUpdate";
+import BoardDelete from "./components/board/BoardDelete";
 /*
   TanStack-Query => Next은 변경 사항이 없이 => 구조만 변경
     개념 : 서버에서 데이터를 가지고 온다
@@ -119,6 +121,8 @@ function App() {
             <Route path={"/board/list"} element={<BoardList/>}/>
           <Route path={"/board/insert"} element={<BoardInsert/>}/>
           <Route path={"/board/detail/:no"} element={<BoardDetail/>}/>
+          <Route path="/board/update/:no" element={<BoardUpdate />} />
+          <Route path="/board/delete/:no" element={<BoardDelete />} />
         </Routes>
       <Footer/>
     </Router>

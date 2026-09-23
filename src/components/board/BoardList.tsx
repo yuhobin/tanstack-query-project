@@ -20,14 +20,17 @@ interface BoardListData {
 function BoardList(){
     const [curpage, setCurpage] = useState<number>(1);
     const nav=useNavigate();
-    const {isLoading,isError,error,data}=useQuery<BoardListData>({
+    const {isLoading,isError,error,data, refetch:hitIncrement}=useQuery<BoardListData>({
         queryKey:['board-list',curpage],
         queryFn: async () : Promise<BoardListData> => {
             const res = await boardClient.get(`/board/list_node?page=${curpage}`);
             return res.data; // 서버가 보낸 데이터를 직접 반환
         }
     })
-    console.log(data)
+
+    useEffect(() => {
+        hitIncrement();
+    }, [curpage]);
     if(isLoading){
         return (
             <h1>Loading...</h1>
